@@ -18,7 +18,7 @@ jobs:
   docker:
     uses: sindhura530/Reusable_Workflows/.github/workflows/buildAndPublishDockerImage.yml@main
     with:
-      image_name: my-awesome-app
+      image_name: my-image
       tag: $GITHUB_RUN_NUMBER
     secrets:
       registry_username: ${{secrets.REGISTRY_USERNAME}}
