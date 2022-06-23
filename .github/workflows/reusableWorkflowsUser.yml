@@ -16,7 +16,7 @@ jobs:
         run: echo Hello, world!
 
   docker:
-    uses: sindhura530/ActionTest/.github/workflows/calledFile.yml@main
+    uses: sindhura530/ActionTest/.github/workflows/CalledFile.yml@main
     with:
       image_name: my-image
       tag: $GITHUB_RUN_NUMBER
