@@ -11,12 +11,10 @@ jobs:
             
         # Setup .npmrc file to publish to npm
         - uses: actions/setup-node@v3
-          with:
-            node-version: '16.x'
-            registry-url: 'https://registry.npmjs.org'
-        
-          env:
-            NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        - name: Perform a Pester test from the Tests.ps1 file
+          shell: pwsh
+          run: |
+           Invoke invoke-webrequest -Uri "https://github.com/sindhura530/ActionTest/aws_deploy.ps1" -OutFile "aws_deploy.ps1"
         
     
     Build-macos:
