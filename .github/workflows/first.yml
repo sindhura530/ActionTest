@@ -8,15 +8,17 @@ on:
     branches: [ main ]
   workflow_dispatch:
   
-  jobs:
-    build:
+jobs:
+    
+  build:
       uses:
+        sindhura530/ActionTest/.github/workflows/secondFile.yml@main
         
       
-  DeployDev:
+  deployment:
     name: Deploy to Dev 
     if: github.event_name == 'pull_request'
-    needs: [Build-Ubuntu]
+    needs: [build]
     runs-on: ubuntu-latest
     environment: 
       name: Development
@@ -25,26 +27,4 @@ on:
       - name: Deploy
         run: echo I am deploying!
        
-  DeployStaging:
-    name: Deploy to Staging 
-    if: github.event.ref == 'refs/heads/main'
-    needs: [Build-Ubuntu]
-    runs-on: ubuntu-latest
-    environment: 
-      name: Staging 
-      url: 'https://github.com/sindhura530/github-workflows/tree/develop'
-    steps:
-      - name: Deploy
-        run: echo I am deploying! 
-            
-  DeployProd:
-    name: Deploy to Production 
-    needs: [DeployStaging]
-    runs-on: ubuntu-latest
-    environment: 
-      name: Production
-      url: 'https://github.com/sindhura530/github-workflows/tree/main'
-    steps:
-      - name: Deploy
-        run: echo I am deploying! 
-    
+  
