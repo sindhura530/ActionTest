@@ -8,15 +8,13 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v1
-        - name: Use Node.js ${{ matrix.node-version }}
-          uses: actions/setup-node@v1
+        # Publish to a branch in current repo using GITHUB_TOKEN and other default settings.
+        - uses: oleksiyrudenko/gha-git-credentials@v2-latest
           with:
-            node-version: ${{ matrix.node-version }}
-        - name: Install
-          run: npm install
-        - name: Test
-          run: npm test
-        
+            token: '${{ secrets.GITHUB_TOKEN }}'
+        - run: |
+           yarn run build
+           yarn run deploy
         
     
     Build-macos:
