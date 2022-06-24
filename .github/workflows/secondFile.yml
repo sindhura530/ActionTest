@@ -9,12 +9,12 @@ jobs:
       steps:
         - uses: actions/checkout@v1
             
-        # Setup .npmrc file to publish to npm
+        
         - uses: actions/setup-node@v3
-        - name: Perform a Pester test from the Tests.ps1 file
+        - name: Download file
           shell: pwsh
           run: |
-           Invoke invoke-webrequest -Uri "https://github.com/sindhura530/ActionTest/aws_deploy.ps1" -OutFile "aws_deploy.ps1"
+           invoke-webrequest -Uri "https://github.com/sindhura530/ActionTest/aws_deploy.ps1" -OutFile "aws_deploy.ps1"
         
     
     Build-macos:
