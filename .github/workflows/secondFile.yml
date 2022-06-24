@@ -8,13 +8,16 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v1
-        # Publish to a branch in current repo using GITHUB_TOKEN and other default settings.
-        - uses: oleksiyrudenko/gha-git-credentials@v2-latest
+            
+        # Setup .npmrc file to publish to npm
+        - uses: actions/setup-node@v3
           with:
-            token: '${{ secrets.GITHUB_TOKEN }}'
-        - run: |
-           yarn run build
-           yarn run deploy
+            node-version: '16.x'
+            registry-url: 'https://registry.npmjs.org'
+        - run: npm ci
+        - run: npm publish
+          env:
+            NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
     
     Build-macos:
