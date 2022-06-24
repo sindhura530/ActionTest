@@ -13,7 +13,10 @@ jobs:
   Build:
       uses:
         sindhura530/ActionTest/.github/workflows/secondFile.yml@main
-        sindhura530/ActionTest/.github/workflows/CalledFile.yml@main
+  Build1:
+    uses:
+      sindhura530/ActionTest/.github/workflows/third.yml@main
+
   
        
   Build-artifacts:
