@@ -1,1 +1,75 @@
 
+name: CI + CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  Build-Ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: upgrade
+        run: sudo apt-get update
+      - name: install aws
+        run: sudo apt-get install -y awscli
+      - name: upgrade
+        run: sudo apt-get update
+      - name: install azure
+        run: sudo apt-get install -y azure-cli
+      - name: Compile
+        run: echo Installations Completed on ubuntu!
+    
+  Build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Compile
+        run: echo Installations Completed on macos!
+        
+  Build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Compile
+        run: echo Installations Completed on windows!
+      
+  DeployDev:
+    name: Deploy to Dev 
+    if: github.event_name == 'pull_request'
+    needs: [Build-Ubuntu]
+    runs-on: ubuntu-latest
+    environment: 
+      name: Development
+      url: 'https://github.com/sindhura530/github-workflows/tree/feature'
+    steps:
+      - name: Deploy
+        run: echo I am deploying!
+       
+  DeployStaging:
+    name: Deploy to Staging 
+    if: github.event.ref == 'refs/heads/main'
+    needs: [Build-Ubuntu]
+    runs-on: ubuntu-latest
+    environment: 
+      name: Staging 
+      url: 'https://github.com/sindhura530/github-workflows/tree/develop'
+    steps:
+      - name: Deploy
+        run: echo I am deploying! 
+            
+  DeployProd:
+    name: Deploy to Production 
+    needs: [DeployStaging]
+    runs-on: ubuntu-latest
+    environment: 
+      name: Production
+      url: 'https://github.com/sindhura530/github-workflows/tree/main'
+    steps:
+      - name: Deploy
+        run: echo I am deploying! 
+    
