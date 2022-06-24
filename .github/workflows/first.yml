@@ -10,7 +10,7 @@ on:
   
 jobs:
     
-  Build-Ubuntu:
+  Build:
       uses:
         sindhura530/ActionTest/.github/workflows/secondFile.yml@main
   
@@ -40,7 +40,7 @@ jobs:
   Dev-deploy:
     name: Deploy to Dev 
     if: github.event_name == 'pull_request'
-    needs: [Build-Ubuntu]
+    needs: [Build]
     runs-on: ubuntu-latest
     environment: 
       name: Development
@@ -53,7 +53,7 @@ jobs:
   Stage-deploy:
     name: Deploy to Staging 
     if: github.event.ref == 'refs/heads/main'
-    needs: [Build-Ubuntu]
+    needs: [Build]
     runs-on: ubuntu-latest
     environment: 
       name: Staging 
