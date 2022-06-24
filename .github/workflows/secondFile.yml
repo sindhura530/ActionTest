@@ -1,0 +1,33 @@
+name: second
+
+on:
+  workflow_call:
+  jobs:
+  Build-Ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: upgrade
+        run: sudo apt-get update
+      - name: install aws
+        run: sudo apt-get install -y awscli
+      - name: upgrade
+        run: sudo apt-get update
+      - name: install azure
+        run: sudo apt-get install -y azure-cli
+      - name: Compile
+        run: echo Installations Completed on ubuntu!
+    
+  Build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Compile
+        run: echo Installations Completed on macos!
+        
+  Build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Compile
+        run: echo Installations Completed on windows!
