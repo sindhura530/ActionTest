@@ -1,0 +1,70 @@
+name: CI and CD pipeline
+on:
+  workflow_dispatch:
+jobs:
+  inputs:
+    uses: chaithragudimalla/Project/.github/workflows/pipelineconfig.yaml@main
+  compile:
+    needs: inputs
+    runs-on: ubuntu-latest
+    steps:
+       - uses: actions/checkout@v3
+       - name: build
+         run: echo 'mvn clean install'
+  Code-Quality:
+    runs-on: ubuntu-latest
+    needs: compile
+    steps:
+       - uses: actions/checkout@v3
+       - name: code Analysis
+         run: echo 'mvn sonar:sonar'
+  security-scan:
+    if: github.event.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    needs: Code-Quality
+    steps:
+       - uses: actions/checkout@v3
+       - name: scanning
+         run: echo 'scanning'
+  Quality-Gates:
+    runs-on: ubuntu-latest
+    needs: security-scan
+    steps:
+       - uses: actions/checkout@v3
+       - name: CodeAnalysis_Quality_gates
+         run: echo 'code analysis quality gates'
+       - name: SecurityAnalysis_Quality_gates
+         run: echo 'security analysis quality gates'
+  Publish_Artifact:
+    runs-on: ubuntu-latest
+    needs: Quality-Gates
+    steps:
+       - uses: actions/checkout@v3
+       - name: github
+         run: echo 'github'
+       - name: Jfrog
+         run: echo 'jfrog'
+  Deploy_Develop:
+    if: github.event.ref == 'refs/heads/feature*'
+    runs-on: ubuntu-latest
+    needs: Publish_Artifact
+    steps:
+       - uses: actions/checkout@v3
+       - name: deploying
+         run: echo 'feature branch'
+  Deploy_Stage:
+    if: github.event.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    needs: Deploy_Develop
+    steps:
+       - uses: actions/checkout@v3
+       - name: deploying into develop branch
+         run: echo 'develop branch'
+  Deploy_PROD:
+    if: github.event.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    needs: Deploy_Stage
+    steps:
+       - uses: actions/checkout@v3
+       - name: deploying to Prod
+         run: echo 'master branch'
