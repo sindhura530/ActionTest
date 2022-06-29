@@ -24,7 +24,7 @@ jobs:
     - name: login
       run: echo "login success"
     - name: tag
-      run:  docker tag amazon/aws-lambda-nodejs:latest sindhu530/dockerhub:myfirstimagepush
+      run:  docker tag amazon/aws-lambda-nodejs sindhu530/dockerhub:myfirstimagepush
     - name: push
       run: docker push docker.io/sindhu530/dockerhub
     
