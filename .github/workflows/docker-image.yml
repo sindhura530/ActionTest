@@ -14,7 +14,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
+    - name: pull the Docker image
       run: docker pull amazon/aws-lambda-nodejs
     - name: Log in to Docker Hub
       uses: docker/login-action@v1
@@ -23,9 +23,8 @@ jobs:
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - name: login
       run: echo "login success"
-    - name: Build and Push the Image
-      uses: docker/build-push-action@v2
-      with:
-        context: .
-        push: true
-        tags: ${{secrets.registry_username}}/${{inputs.image_name}}:${{env.final_tag}}
+    - name: tag
+      run:  docker tag amazon/aws-lambda-nodejs:latest sindhu530/dockerhub:myfirstimagepush
+
+    #docker push sindhu530/dockerhub:tagname
+    
