@@ -26,5 +26,5 @@ jobs:
     - name: tag
       run:  docker tag amazon/aws-lambda-nodejs:latest sindhu530/dockerhub:myfirstimagepush
     - name: push
-      run: docker push amazon/aws-lambda-nodejs:latest sindhu530/dockerhub:myfirstimagepush
+      run: docker push amazon/aws-lambda-nodejs:latest 
     
