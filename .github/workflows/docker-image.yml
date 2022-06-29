@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: pull the Docker image
-      run: docker pull amazon/aws-lambda-nodejs
+      run: docker pull amazon/aws-lambda-nodejs:latest
     - name: docker build 
       run: docker build -it amazon/aws-lambda-nodejs:latest
     - name: Log in to Docker Hub
@@ -27,6 +27,8 @@ jobs:
       run: echo "login success"
     - name: tag
       run:  docker tag amazon/aws-lambda-nodejs sindhu530/dockerhub:myfirstimagepush
+    - name: push
+      run: docker push sindhu530/dockerhub:myfirstimagepush
    
     
     
