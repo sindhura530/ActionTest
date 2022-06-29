@@ -1,4 +1,4 @@
-name: Node Github CI
+name: npm pipeline
 
 on:
  workflow_call
@@ -18,11 +18,14 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm bulild and test
-      run: |
-        npm install
-        echo "npm run build"
-        echo "npm run test"
+    - name: setup npm
+      run: npm install
+    - name: Install dependencies
+      run: echo "npm run build"
+    - name: Run test
+      run: echo "npm run test"
+    
+  
       
 
 
