@@ -18,27 +18,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install and test
+    - name: npm bulild and test
       run: |
         npm install
-        echo "npm test"
-      env:
-        CI: true
+        echo "npm run build"
+        echo "npm run test"
+      
 
-  deploy:
-    needs: [test]
-    runs-on: ubuntu-latest
 
-    steps:
-    - name: SSH and deploy node app
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_KEY }}
-        port: ${{ secrets.SSH_PORT }}
-        script: |
-          cd ~/node-github-demo
-          git pull origin master
-          npm install --production
-          pm2 restart node-app
