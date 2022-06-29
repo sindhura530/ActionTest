@@ -21,3 +21,5 @@ jobs:
       with:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
+    - name: login
+      run: echo "login success"
