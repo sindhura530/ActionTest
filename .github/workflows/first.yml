@@ -15,7 +15,7 @@ jobs:
         sindhura530/ActionTest/.github/workflows/secondFile.yml@main
   Build1:
     uses:
-      sindhura530/ActionTest/.github/workflows/nodejs.yml@main
+      sindhura530/ActionTest/.github/workflows/npm.yml@main
       
 
    
