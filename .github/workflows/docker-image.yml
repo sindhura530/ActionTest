@@ -23,6 +23,9 @@ jobs:
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - name: login
       run: echo "login success"
-    - name: push
-      run: docker push amazon/aws-lambda-nodejs/myrepo
-      
+    - name: Build and Push the Image
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: true
+        tags: ${{secrets.registry_username}}/${{inputs.image_name}}:${{env.final_tag}}
