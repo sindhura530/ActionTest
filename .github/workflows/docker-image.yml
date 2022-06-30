@@ -1,40 +1,32 @@
-name: Docker Image CI
+name: npm pipeline
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+ workflow_call
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-    - name: pull the Docker image
-      #run: docker pull ubuntu
-      run: docker pull sindhu530/myimg:1.0
-      
-    - name: docker run
-      #run:  docker container run ubuntu
-      run: |
-           docker container run sindhu530/myimg:1.0
-           ls -l
-           lsb_release -a
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v1
-      with:
-        username: ${{ secrets.REGISTRY_USERNAME }}
-        password: ${{ secrets.REGISTRY_PASSWORD }}
-    - name: login
-      run: echo "login success"
-    - name: tag
-      run:  docker tag sindhu530/myimg:1.0 sindhu530/myimg:2.0
-    - name: push
-      run: docker push sindhu530/myimg:2.0
-   
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+      - name: pull the Docker image
+        run: docker pull openjdk
+      - name: docker run
+        run: |
+           docker container run openjdk
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - name: login
+        run: echo "login success"
+      - name: tag
+        run:  docker tag openjdk sindhu530/openjdk:latest
+      - name: push
+        run: docker push sindhu530/openjdk:latest
     
     
