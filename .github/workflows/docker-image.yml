@@ -21,7 +21,7 @@ jobs:
     - name: docker run
       #run:  docker container run ubuntu
       run: |
-           docker container run myimg:1.0
+           docker container run sindhu530/myimg:1.0
            ls -l
            lsb_release -a
     - name: Log in to Docker Hub
