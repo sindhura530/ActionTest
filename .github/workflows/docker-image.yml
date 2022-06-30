@@ -1,4 +1,4 @@
-name: docker image
+name: docker image CI
 
 on:
  workflow_call
