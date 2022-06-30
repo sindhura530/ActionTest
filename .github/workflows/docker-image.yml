@@ -15,9 +15,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: pull the Docker image
-      run: docker pull ubuntu:latest
+      run: docker pull ubuntu
     - name: docker build 
-      run:  docker container run ubuntu:latest
+      run:  docker container run ubuntu
     - name: Log in to Docker Hub
       uses: docker/login-action@v1
       with:
@@ -26,7 +26,7 @@ jobs:
     - name: login
       run: echo "login success"
     - name: tag
-      run:  docker tag ubuntu:latest sindhu530/dockerhub:myfirstimagepush
+      run:  docker tag ubuntu sindhu530/ubuntu:latest
     - name: push
       run: docker push sindhu530/ubuntu:latest
    
