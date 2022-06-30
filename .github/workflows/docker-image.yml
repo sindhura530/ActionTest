@@ -26,9 +26,9 @@ jobs:
     - name: login
       run: echo "login success"
     - name: tag
-      run:  docker tag ubuntu sindhu530/ubuntu:latest
+      run:  docker tag ubuntu sindhu530/myimg:1.0
     - name: push
-      run: docker push sindhu530/ubuntu:latest
+      run: docker push sindhu530/myimg:1.0
    
     
     
