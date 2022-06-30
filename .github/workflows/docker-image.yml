@@ -16,8 +16,12 @@ jobs:
     - uses: actions/checkout@v3
     - name: pull the Docker image
       run: docker pull ubuntu
-    - name: docker build 
-      run:  docker container run ubuntu
+    - name: docker run
+      #run:  docker container run ubuntu
+      run: |
+           docker container run ubuntu
+           ls -l
+           lsb_release -a
     - name: Log in to Docker Hub
       uses: docker/login-action@v1
       with:
