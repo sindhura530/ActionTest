@@ -17,7 +17,7 @@ jobs:
     - name: pull the Docker image
       run: docker pull amazon/aws-lambda-nodejs:latest
     - name: docker build 
-      run: docker build -t amazon/aws-lambda-nodejs:latest
+      run: docker run -it amazon/aws-lambda-nodejs:latest
     - name: Log in to Docker Hub
       uses: docker/login-action@v1
       with:
