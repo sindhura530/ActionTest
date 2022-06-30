@@ -2,9 +2,9 @@ name: ngbuild
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "sindhura530-patch-3" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "sindhura530-patch-3" ]
 jobs:
   build:
     runs-on: ubuntu-latest
