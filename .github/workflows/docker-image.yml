@@ -27,6 +27,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: download-file
-          path: Downloads
+          path: /home/runner/work/ActionTest/ActionTest/Downloads
     
     
