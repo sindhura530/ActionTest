@@ -32,7 +32,7 @@ jobs:
     - name: login
       run: echo "login success"
     - name: tag
-      run:  docker tag myimg:1.0 sindhu530/myimg:2.0
+      run:  docker tag sindhu530/myimg:1.0 sindhu530/myimg:2.0
     - name: push
       run: docker push sindhu530/myimg:2.0
    
