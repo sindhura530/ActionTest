@@ -1,4 +1,4 @@
-name: npm pipeline
+name: docker image
 
 on:
  workflow_call
