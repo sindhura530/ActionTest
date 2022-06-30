@@ -21,6 +21,8 @@ jobs:
              echo 'npm install'
              echo 'npm run ng build --prod'
              cd ..
+             ls -l
+             readlink -f Downloads
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
