@@ -16,17 +16,17 @@ jobs:
            docker container run angular/ngcontainer
       - name: Install dependencies
         run: |
-             mkdir Downloads
+             
              cd Downloads
-             echo 'npm install' > sindhu.html
-             echo 'npm run ng build --prod'  > sindhu.html
+             echo 'npm install' 
+             echo 'npm run ng build --prod'  
              cd ..
              ls -l
              readlink -f Downloads
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: download-file
+          name: Downloads
           path: Downloads
     
     
