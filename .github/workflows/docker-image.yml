@@ -15,11 +15,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: pull the Docker image
-      run: docker pull ubuntu
+      #run: docker pull ubuntu
+      run: docker pull myimg:1.0
     - name: docker run
       #run:  docker container run ubuntu
       run: |
-           docker container run ubuntu
+           docker container run myimg:1.0
            ls -l
            lsb_release -a
     - name: Log in to Docker Hub
@@ -30,9 +31,9 @@ jobs:
     - name: login
       run: echo "login success"
     - name: tag
-      run:  docker tag ubuntu sindhu530/myimg:1.0
+      run:  docker tag myimg:1.0 sindhu530/myimg:2.0
     - name: push
-      run: docker push sindhu530/myimg:1.0
+      run: docker push sindhu530/myimg:2.0
    
     
     
