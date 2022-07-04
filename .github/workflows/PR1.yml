@@ -1,7 +1,8 @@
 name: PR
 on:
   push:
-    branches-ignore: feature
+    branches:
+      feature
 jobs:
   action-pull-request:
     runs-on: ubuntu-latest
