@@ -1,0 +1,20 @@
+name: DockerCI2
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - name: login
+        run: echo "login success"
+      - name: build docker image
+        run: docker build -t sindhura530/ActionTest:$(docker images | awk '($1 == "sindhura530/ActionTest") {print $2 += .01; exit}') .
+        #docker build -t your/project:$(docker images | awk '($1 == "your/project") {print $2 += .01; exit}') .
+       
