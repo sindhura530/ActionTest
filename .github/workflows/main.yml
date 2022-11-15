@@ -15,6 +15,6 @@ jobs:
       - name: login
         run: echo "login success"
       - name: build docker image
-        run: docker build -t sindhura530/ActionTest:$(docker images | awk '($1 == "sindhura530/ActionTest") {print $2 += .01; exit}') .
+        run: docker build .
         #docker build -t your/project:$(docker images | awk '($1 == "your/project") {print $2 += .01; exit}') .
        
