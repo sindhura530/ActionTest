@@ -15,6 +15,6 @@ jobs:
       - name: login
         run: echo "login success"
       - name: build docker image
-        run: docker build .
+        run: docker build --no-cache -t aaa .
         #docker build -t your/project:$(docker images | awk '($1 == "your/project") {print $2 += .01; exit}') .
        
